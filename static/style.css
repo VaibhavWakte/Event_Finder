@@ -1,0 +1,116 @@
+/* ====== GLOBAL RESET ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #ff9a9e 0%, #fad0c4 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #222;
+  animation: fadeInBody 1s ease-in forwards;
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.4rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ffd700;
+  transform: scale(1.1);
+}
+
+/* ====== MAIN CONTENT ====== */
+main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255,255,255,0.8);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+/* ====== HEADINGS ====== */
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #444;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* ====== BUTTONS / LINKS ====== */
+.btn {
+  display: inline-block;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: #fff !important;
+  padding: 0.6rem 1.2rem;
+  margin: 0.4rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.4s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+  background: linear-gradient(45deg, #2575fc, #6a11cb);
+  transform: translateY(-3px) scale(1.05);
+}
+
+.btn.active {
+  background: linear-gradient(45deg, #ff6a00, #ee0979);
+}
+
+/* ====== EVENT LIST ====== */
+.event-list {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+.event-list li {
+  background: rgba(255,255,255,0.7);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.event-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ====== ANIMATIONS ====== */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInBody {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

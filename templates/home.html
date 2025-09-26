@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block content %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #ff6f61;
+        font-size: 3em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    h3 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: normal;
+    }
+
+    .button-group {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 25px;
+        text-decoration: none;
+        color: white;
+        background: #ff6f61;
+        transition: 0.3s;
+        font-weight: bold;
+    }
+
+    .btn:hover {
+        background: #ff3b2f;
+        transform: scale(1.1);
+    }
+
+    .btn.active {
+        background: #ffb347;
+        color: #333;
+    }
+
+    .event-list {
+        list-style: none;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .event-list li {
+        background: rgba(255, 255, 255, 0.9);
+        margin: 10px 0;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .event-list li:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .event-list a {
+        font-weight: bold;
+        color: #ff6f61;
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+
+    .event-list a:hover {
+        text-decoration: underline;
+    }
+
+    .event-list li span {
+        color: #555;
+        font-style: italic;
+    }
+</style>
+
+<h1>ALL EVENTS, ENDLESS FUN</h1>
+<h3>SELECT YOUR TOPICS</h3>
+
+<div class="button-group">
+  <a href="{% url 'home' %}" class="btn {% if not selected %}active{% endif %}">All</a>
+  {% for c in categories %}
+    <a href="?category={{ c.name }}" class="btn {% if selected == c.name %}active{% endif %}">{{ c.name }}</a>
+  {% endfor %}
+</div>
+
+<ul class="event-list">
+  {% for e in events %}
+    <li>
+      <a href="{% url 'event_detail' e.id %}">{{ e.title }}</a>
+      <span>{{ e.category.name }} – {{ e.date }}</span>
+    </li>
+  {% empty %}
+    <li>No events in this category.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

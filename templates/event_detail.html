@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block content %}
+<style>
+  /* Container with subtle gradient background and fade-in animation */
+.event-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f9f9ff 0%, #e6f7ff 100%);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Fancy title */
+.event-container h2 {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 2.4rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4a3aff;
+    letter-spacing: 1px;
+    animation: slideDown 0.8s ease;
+}
+
+/* Image styling with hover zoom */
+.event-container img.img-fluid {
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+    margin: 0 auto 25px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.event-container img.img-fluid:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Paragraphs & date */
+.event-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Highlight category with a badge look */
+.event-container p.category {
+    display: inline-block;
+    background: #ff66c4;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: pulse 2s infinite;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to   {opacity: 1; transform: translateY(0);}
+}
+@keyframes slideDown {
+    from {opacity: 0; transform: translateY(-30px);}
+    to   {opacity: 1; transform: translateY(0);}
+}
+@keyframes pulse {
+    0% {box-shadow: 0 0 0 0 rgba(255,102,196,0.6);}
+    70%{box-shadow: 0 0 0 10px rgba(255,102,196,0);}
+    100%{box-shadow: 0 0 0 0 rgba(255,102,196,0);}
+}
+
+</style>
+
+<div class="event-container">
+    <center>
+    <h2>{{ event.title }}</h2>
+    {%if event.image%} 
+        <img src="{{event.image.url}}" alt ="event.title" class="img-fluid">
+    {% else %}
+        <p>no image uploaded</p>
+    {%endif%}
+    <p>{{ event.description }}</p>
+    <p><strong>Date:</strong> {{ event.date }}</p>
+    <p class="category">{{ event.category.name }}</p>
+    <h3><a href="{% url 'event_edit' event.id %}">Edit</a></h3>
+    <nav>
+    <h3><a href="{% url 'join_event' %}">JOIN Event</a></h3>
+  </nav>
+    </center>
+</div>
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+ <center>
+<div class="edit-event-container">
+    <h2>Edit Event: {{ event.title }}</h2>
+    <form method="post" enctype="multipart/form-data" class="edit-form">
+        {% csrf_token %}
+
+        <!-- Render each form field with a wrapper for label & input -->
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                <div class="error">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn-submit">Save Changes</button>
+    </form>
+</div>
+  </center> 
+  <style>
+{% endblock %}
+/* Container */
+/* Container */
+.edit-event-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f0f4ff, #dff0ff);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    animation: fadeIn 1s ease forwards;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Heading */
+.edit-event-container h2 {
+    text-align: center;
+    color: #4a3aff;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    animation: slideDown 0.8s ease;
+}
+
+/* Form */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Inputs, Textareas, Selects */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 2px solid #ddd;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #4a3aff;
+    box-shadow: 0 0 12px rgba(74, 58, 255, 0.3);
+    outline: none;
+}
+
+/* Textarea styling */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Error message */
+.error {
+    color: #ff4d4d;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Submit button */
+.btn-submit {
+    padding: 15px;
+    background: linear-gradient(45deg, #4a3aff, #8c73ff);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(74, 58, 255, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes slideDown {
+    from {opacity: 0; transform: translateY(-30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+</style>

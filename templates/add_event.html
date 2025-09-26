@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+/* Animate background gradient */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f6d365, #fda085, #fbc2eb, #a6c1ee);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* Form container */
+form {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    transform: scale(0);
+    animation: formPop 0.5s forwards ease-out;
+}
+
+/* Animate form pop */
+@keyframes formPop {
+    to { transform: scale(1); }
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: #ff6f61;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Form labels */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ff6f61;
+    transition: 0.3s;
+}
+
+input:focus + label,
+select:focus + label,
+textarea:focus + label {
+    color: #ff3b2f;
+}
+
+/* Form inputs with gradient border animation */
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0 20px 0;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    font-size: 1em;
+    background-image: linear-gradient(white, white), linear-gradient(45deg, #ff6f61, #ffb347);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    transition: 0.4s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #ff6f61;
+    box-shadow: 0 0 10px rgba(255,111,97,0.5);
+    outline: none;
+}
+
+/* Placeholder color animation */
+::placeholder {
+    color: #ff6f61;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+    color: #ff3b2f;
+}
+
+/* Button */
+button.btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #ff6f61, #ffb347);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button.btn:hover {
+    background: linear-gradient(45deg, #ff3b2f, #ff9a3f);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    form {
+        margin: 20px;
+        padding: 25px;
+    }
+}
+</style>
+
+<h2>Add Event</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn">ADD</button>
+</form>
+{% endblock %}
