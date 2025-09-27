@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Event, Category
-from .forms import EventForm,JoinEventForm
+from .models import Event, Category,Booking
+from .forms import EventForm ,BookingForm
 
 def home(request):
     categories = Category.objects.all()
@@ -17,7 +17,7 @@ def event_detail(request, pk):
 
 def add_event(request):
     if request.method == "POST":
-        form = EventForm(request.POST)
+        form = EventForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("home")
@@ -26,12 +26,12 @@ def add_event(request):
     return render(request, "add_event.html", {"form": form})
 def join_event(request):
     if request.method=="POST":
-        form=JoinEventForm(request.POST)
+        form=BookingForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("home")
     else:
-        form=JoinEventForm()
+        form=BookingForm()
     return render(request,"joinevent.html",{"form":form})
 
 def event_edit(request, pk):

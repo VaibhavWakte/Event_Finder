@@ -1,14 +1,15 @@
 from django import forms
-from .models import Event,JoinEvent
+from .models import Event,Booking
 
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ["title", "image","description", "date", "category"]
+        fields = ["title", "image", "description", "date", "time", "category", "location_link"]
         widgets = {
             "date": forms.DateInput(attrs={"type": "date"})
         }
-class JoinEventForm(forms.ModelForm):
+
+class BookingForm(forms.ModelForm):
     class Meta:
-        model=JoinEvent
-        fields=["name","age","gender","location"]
+        model = Booking
+        fields = ['event', 'full_name', 'age', 'gender', 'email', 'phone', 'seats']

@@ -87,6 +87,7 @@
     {%endif%}
     <p>{{ event.description }}</p>
     <p><strong>Date:</strong> {{ event.date }}</p>
+    <p><strong>Time:</strong> {{ event.time }}</p>
     <p class="category">{{ event.category.name }}</p>
     <h3><a href="{% url 'event_edit' event.id %}">Edit</a></h3>
     <nav>
