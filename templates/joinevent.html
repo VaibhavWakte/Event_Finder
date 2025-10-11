@@ -123,10 +123,12 @@ button.btn:hover {
 }
 </style>
 
-<h2>JOIN Event</h2>
+<h2>Book Event: {{ event.title }}</h2>
+<p>Date: {{ event.date }} | Time: {{ event.time }} | Location: {{ event.location }}</p>
+
 <form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn">JOIN </button>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Book Now</button>
 </form>
 {% endblock %}

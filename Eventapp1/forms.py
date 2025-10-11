@@ -12,4 +12,4 @@ class EventForm(forms.ModelForm):
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['event', 'full_name', 'age', 'gender', 'email', 'phone', 'seats']
+        fields = ['full_name', 'age', 'gender', 'email', 'phone', 'seats']

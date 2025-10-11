@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmation</title>
+</head>
+<body>
+    <p>Hi {{ booking.full_name }},</p>
+    <p>Your seat for "<strong>{{ booking.event.title }}</strong>" is successfully booked!</p>
+    <p>Event Date: {{ booking.event.date }}<br>
+       Event Time: {{ booking.event.time }}<br>
+       Location: <a href="{{ booking.event.location_link }}">View on Google Maps</a></p>
+    <p>Thank you,<br>Event Finder Team</p>
+</body>
+</html>

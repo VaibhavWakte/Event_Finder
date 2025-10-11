@@ -1,0 +1,10 @@
+Hi {{ booking.full_name }},
+
+Your seat for "{{ booking.event.title }}" is successfully booked!
+
+Event Date: {{ booking.event.date }}
+Event Time: {{ booking.event.time }}
+Location: {{ booking.event.location_link }}
+
+Thank you,
+Event Finder Team

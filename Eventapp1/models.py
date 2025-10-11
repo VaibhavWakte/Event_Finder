@@ -1,7 +1,9 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
-
+from django.contrib.auth.models import User
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -35,3 +37,19 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.full_name} - {self.event}"
+
+
+    def send_booking_email(self, booking):
+        to_email = booking.email  # use email entered in form
+        if not to_email:
+            return False
+
+        subject = f"Booking confirmed — {booking.event.title} (#{booking.id})"
+        context = {"booking": booking}
+        text_content = render_to_string("booking_confirmation.txt", context)
+        html_content = render_to_string("booking_confirmation.html", context)
+
+        msg = EmailMultiAlternatives(subject, text_content, settings.DEFAULT_FROM_EMAIL, [to_email])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send(fail_silently=False)
+        return True

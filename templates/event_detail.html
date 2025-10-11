@@ -91,7 +91,10 @@
     <p class="category">{{ event.category.name }}</p>
     <h3><a href="{% url 'event_edit' event.id %}">Edit</a></h3>
     <nav>
-    <h3><a href="{% url 'join_event' %}">JOIN Event</a></h3>
+   <h3>
+    {% if event %}
+  <h3><a href="{% url 'book_event' event.id %}">Join Event</a></h3>
+    {% endif %}
   </nav>
     </center>
 </div>

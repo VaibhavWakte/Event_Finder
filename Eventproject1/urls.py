@@ -25,9 +25,9 @@ urlpatterns = [
     path("", home, name="home"),
     path("event/<int:pk>/", event_detail, name="event_detail"),
     path("add/",add_event, name="add_event"),
-    path("join/",join_event,name="join_event"),
     path('event/<int:pk>/edit/',event_edit, name='event_edit'),
-
+    path('book/<int:pk>/', book_event, name='book_event'),
+    path('booking-success/', booking_success, name='booking_success'),
 ]
 if  settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

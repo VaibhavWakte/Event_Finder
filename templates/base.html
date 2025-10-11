@@ -1,130 +1,171 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>EVENT FINDER</title>
-  <link rel="stylesheet" href="{% static 'style.css' %}">
-  <style>
-    /* Global Styles */
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-        background-size: 400% 400%;
-        animation: gradientBG 20s ease infinite;
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVENT FINDER</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        /* ====== Global Styles ====== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            background-size: 400% 400%;
+            animation: gradientFlow 20s ease infinite;
+        }
 
-    @keyframes gradientBG {
-        0% {background-position: 0% 50%;}
-        50% {background-position: 100% 50%;}
-        100% {background-position: 0% 50%;}
-    }
+        @keyframes gradientFlow {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
 
-    main {
-        padding: 30px 20px;
-        min-height: 80vh;
-    }
+        main {
+            padding: 50px 20px;
+            min-height: 75vh;
+        }
 
-    /* Navbar */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: linear-gradient(90deg, #ff6f61, #ffb347);
-        padding: 15px 30px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            padding: 40px;
+            backdrop-filter: blur(6px);
+        }
 
-    .navbar a {
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-        margin-left: 20px;
-        font-size: 1.1em;
-        transition: 0.3s;
-    }
-
-    .navbar a:hover {
-        color: #333;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-        transform: scale(1.05);
-    }
-
-    .navbar a:first-child {
-        font-size: 1.5em;
-        color: white;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    }
-
-    /* Headings */
-    h1, h2, h3 {
-        color: #ff6f61;
-        text-align: center;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-
-    /* Links inside main */
-    main a {
-        color: #ff6f61;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-
-    main a:hover {
-        text-decoration: underline;
-        color: #ff3b2f;
-    }
-
-    /* Buttons (if any inside main) */
-    .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 10px 5px 10px 0;
-        border-radius: 25px;
-        background: linear-gradient(45deg, #ff6f61, #ffb347);
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-
-    .btn:hover {
-        background: linear-gradient(45deg, #ff3b2f, #ff9a3f);
-        transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
+        /* ====== Navbar ====== */
         .navbar {
-            flex-direction: column;
-            align-items: flex-start;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #283c86, #45a247);
+            padding: 18px 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .navbar nav {
-            margin-top: 10px;
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
         }
-    }
-  </style>
+
+        .navbar a:hover {
+            color: #ffeb3b;
+            transform: scale(1.05);
+        }
+
+        .navbar a:first-child {
+            font-size: 1.6em;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ====== Headings ====== */
+        h1, h2, h3 {
+            color: #283c86;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        /* ====== Buttons ====== */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px 5px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #36d1dc, #5b86e5);
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #00b09b, #96c93d);
+            transform: scale(1.07);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        /* ====== Footer ====== */
+        footer {
+            background: linear-gradient(90deg, #45a247, #283c86);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-weight: 500;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+        }
+
+        footer a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* ====== Responsive ====== */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+            }
+
+            .navbar nav {
+                margin-top: 10px;
+            }
+
+            .container {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
-<body>
-<header class="navbar">
-  <a href="{% url 'home' %}">EVENT FINDER</a>
-  <nav>
-    <a href="{% url 'add_event' %}">Add Event</a>
-  </nav>
-  <nav>
-    <a href="{% url 'join_event' %}">JOIN Event</a>
-  </nav>
 
-</header>
-<main>
-  {% block content %}{% endblock %}
-</main>
+<body>
+    <!-- ====== Header Section ====== -->
+    <header class="navbar">
+        <a href="{% url 'home' %}">EVENT FINDER</a>
+        <nav>
+            <a href="{% url 'add_event' %}">Add Event</a>
+            {% if event %}
+                <a href="{% url 'book_event' event.id %}">Book Event</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <!-- ====== Main Content ====== -->
+    <main>
+        <div class="container">
+            {% block content %}
+            <!-- Page specific content will load here -->
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- ====== Footer Section ====== -->
+    <footer>
+        <p>© 2025 Event Finder | Designed with 💙 by Your Team</p>
+        <p><a href="{% url 'home' %}">Home</a> | <a href="{% url 'add_event' %}">Add Event</a></p>
+    </footer>
 </body>
 </html>
